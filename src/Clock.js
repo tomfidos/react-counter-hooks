@@ -1,46 +1,27 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Clock.css';
  
-class Clock extends Component {
+const Clock = (props) => {
+
+    const [date, setDate] = useState(new Date());
  
-    constructor(props) {
-        super(props);
- 
-        this.state = {date: new Date()};
- 
-        console.log(`Initialization lifeCycle: constructor(props)`);
-    }
- 
-    componentDidMount() {
-        this.timerID = setInterval(
-            () => {this.tick()},
+    useEffect(() => {
+        const interval = setInterval(
+            () => {tick()},
             1000
         );
-        console.log(`Mounting lifeCycle: componentDidMount()`);
+        return () => clearInterval(interval);
+    }, []);
+ 
+    const tick = () => {
+        setDate(new Date());
     }
  
-    componentDidUpdate() {
-        console.log(`Updation lifeCycle: componentDidUpdate()`);
-    }
- 
-    componentWillUnmount() {
-        clearInterval(this.timerID);
-        console.log(`Unmounting lifeCycle: componentWillUnmount()`);
-    }
- 
-    tick = () => {
-        this.setState({
-            date: new Date()
-        });
-    }
- 
-    render() {
-        return(
-            <div className="clock">
-                <h4>Time: {this.state.date.toLocaleTimeString()} <span onClick={this.props.toggleClockMethod}>X</span></h4>
-            </div>
-        );
-    }
+    return(
+        <div className="clock">
+            <h4>Time: {date.toLocaleTimeString()} <span onClick={props.toggleClockMethod}>X</span></h4>
+        </div>
+    );
  
 }
  
