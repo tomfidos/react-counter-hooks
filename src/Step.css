@@ -1,0 +1,11 @@
+.step {
+    color: blue;
+    margin-top: 10px;
+}
+
+.step input {
+    color: black;
+    margin-left: 5px;
+    padding-left: 5px;
+    max-width: 50px;
+}
