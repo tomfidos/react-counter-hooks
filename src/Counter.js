@@ -64,7 +64,7 @@ class Counter extends Component {
             <div className='counter'>
                 Licznik:
                 <Display displayValue={this.state.counterValue}/>
-                <ButtonsPanel buttonMethod={this.changeValue}/>
+                <ButtonsPanel stepValue={this.state.stepValue} buttonMethod={this.changeValue}/>
                 <Step stepValue={this.state.stepValue} updateStep={this.updateStep}/>
                 {clockElement}
             </div>
